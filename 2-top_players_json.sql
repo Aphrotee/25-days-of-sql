@@ -30,7 +30,9 @@ SELECT 'highest_assists' AS title, JSON_OBJECT('id', id, 'nationality', national
   FROM wc_players
   WHERE assists_provided = (SELECT MAX(assists_provided)
 							  FROM wc_players
-                              WHERE assists_provided REGEXP '[0-9]');
+                              WHERE assists_provided REGEXP '[0-9]')
+;
+
 SELECT 'overall_best_player' AS title, JSON_OBJECT('id', id, 'nationality', nationality, 'fifa_ranking', fifa_ranking,
 												   'national_team_kit_sponsor', national_team_kit_sponsor, 'position', position,
                                                    'national_team_jersey_number', national_team_jersey_number, 'player_dob', player_dob,
@@ -44,4 +46,5 @@ SELECT 'overall_best_player' AS title, JSON_OBJECT('id', id, 'nationality', nati
   WHERE goals_scored + assists_provided = (SELECT MAX(goals_scored + assists_provided)
 							  FROM wc_players
                               WHERE goals_scored REGEXP '[0-9]'
-                              AND assists_provided REGEXP '[0-9]');
+                              AND assists_provided REGEXP '[0-9]')
+;
